@@ -1,0 +1,8 @@
+{% extends "scada/header.html" %}
+
+{% block content %}
+	We are always looking for new students and contributors to our project to make it bigger and better.
+	{% for c in content %}
+		<p>{{c}}</p>
+	{% endfor %}
+{% endblock %}
