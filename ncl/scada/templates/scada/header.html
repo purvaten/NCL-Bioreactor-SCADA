@@ -22,39 +22,66 @@
 			  <div class="col-sm-2">
 				  <br>
 				  <center>
-					<img src="{% static 'scada/img/logo.jpg' %}" class="responsive-img" style='max-height:150px;' alt="face">
+					<img src="{% static 'scada/img/logo.jpg' %}" class="responsive-img" style='max-height:130px;' alt="logo">
 				  </center>
 			  </div>
-			  <div class="col-sm-10">
+			  <div class="col-sm-20">
 				  <br>
-				  <h2>The National Chemical Laboratory Bioreactor SCADA Project</h2><br>
+				  <img src="{% static 'scada/img/ncl.jpg' %}" class="responsive-img" style='max-height:130px;' alt="ncl" align="right" hspace="70">
+				  <h3>The National Chemical Laboratory Bioreactor SCADA Project</h2><br>
 				  <h4>Dr. Neelima Iyer</h4>
 			  </div>
 		</div><hr>
 
+		<div class="btn-group btn-group-justified" role="group" aria-label="top-bar">
+		  <div class="btn-group" role="group">
+		  	{% if user.is_authenticated %}
+		    	<a href="{% url 'logout'%}?next={{request.path}}" class="btn btn-default" role="button"><font color="blue">Hi, {{ user.get_username }}!</font> Logout.</a>
+		   {% else %}
+		    	<a href="{% url 'login'%}?next={{request.path}}" class="btn btn-default" role="button">Login</a></li>
+		   {% endif %}
+		  </div>
+		  <div class="btn-group" role="group">
+		    <a href="/" class="btn btn-default" role="button">Home</a>
+		  </div>
+		  <div class="btn-group" role="group">
+		    <a href="/contact/" class="btn btn-default" role="button">Contribute</a>
+		  </div>
+		</div>
+
 		<div class="row">
 		  <div class="col-sm-2">
-		  <br>
+		  <br><br>
 
-		  <br>
-		   <!-- Great, til you resize. -->
-			<!--<div class="well bs-sidebar affix" id="sidebar" style="background-color:#fff">-->
 			<div class="well bs-sidebar" id="sidebar" style="background-color:#fff">
 			  <ul class="nav nav-pills nav-stacked">
 				<li><a href='/'>Home</a></li>
 			  </ul>
-			  <br>
+
 			  <ul class="nav nav-pills nav-stacked">
-				<li><a href='/accounts/login/'>Accounts</a>
+				<li><a href='/account/'>My Account</a>
 			  </ul>
-			  <br>
+
 			  <ul class="nav nav-pills nav-stacked">
 				<li><a href='/contact/'>Contribute</a></li>
 			  </ul>
-			</div> <!--well bs-sidebar affix-->
-		  </div> <!--col-sm-2-->
-		  <div class="col-sm-10">
 
+			  <ul class="nav nav-pills nav-stacked">
+				<li><a href='#'>Projects</a></li>
+			  </ul>
+
+			  <ul class="nav nav-pills nav-stacked">
+				<li><a href='#'>Vission and Mission</a></li>
+			  </ul>
+
+			  <ul class="nav nav-pills nav-stacked">
+				<li><a href='#'>People</a></li>
+			  </ul>
+			</div>
+
+		  </div> <!--col-sm-2-->
+
+		  <div class="col-sm-10">
 			<div class='container-fluid'>
 			<br><br>
 			   {% block content %}

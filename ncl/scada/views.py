@@ -9,3 +9,6 @@ def contact(request):
 
 def login(request):
 	return render(request, 'scada/login.html')
+
+def account(request):
+	return render(request, 'scada/account.html')
