@@ -1,0 +1,85 @@
+{% extends "scada/header.html" %}
+
+{% block content %}
+
+{% include "scada/includes/htmlsnippet.html" %}
+
+<div>
+    <div class="container-fluid">
+      <!-- Breadcrumbs-->
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item active">Data Table</li>
+      </ol>
+      <!-- Example DataTables Card-->
+      <div class="card mb-3">
+        <div class="card-header">
+          <i class="fa fa-table"></i> Data Table Example</div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Position</th>
+                  <th>Office</th>
+                  <th>Age</th>
+                  <th>Start date</th>
+                  <th>Salary</th>
+                </tr>
+              </thead>
+              <tfoot>
+                <tr>
+                  <th>Name</th>
+                  <th>Position</th>
+                  <th>Office</th>
+                  <th>Age</th>
+                  <th>Start date</th>
+                  <th>Salary</th>
+                </tr>
+              </tfoot>
+              <tbody>
+
+                {% if values %}
+                  <ul>
+                    {% for value in values %}
+                      <td>{{ value.name }}</td>
+                      <td>{{ value.position }}</td>
+                      <td>{{ value.office }}</td>
+                      <td>{{ value.age }}</td>
+                      <td>{{ value.start_date }}</td>
+                      <td>${{ value.salary }}</td>
+                      </tr>
+                    {% endfor %}
+                  </ul>
+                {% else %}
+                  <strong>There are no values present.</strong>
+                {% endif %}
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+      </div>
+    </div>
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fa fa-angle-up"></i>
+    </a>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="/static/scada/vendor/jquery/jquery.min.js"></script>
+    <script src="/static/scada/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="/static/scada/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Page level plugin JavaScript-->
+    <script src="/static/scada/vendor/datatables/jquery.dataTables.js"></script>
+    <script src="/static/scada/vendor/datatables/dataTables.bootstrap4.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="/static/scada/js/sb-admin.min.js"></script>
+    <!-- Custom scripts for this page-->
+    <script src="/static/scada/js/sb-admin-datatables.min.js"></script>
+  </div>
+
+{% endblock %}

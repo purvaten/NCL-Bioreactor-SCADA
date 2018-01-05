@@ -1,3 +1,4 @@
 from django.contrib import admin
+from scada.models import Values
 
-# Register your models here.
+admin.site.register(Values)
