@@ -2,7 +2,7 @@
 
 {% block content %}
         {% if form.errors %}
-        <div class="alert alert-danger col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2" role="alert" style="margin-top:10px;margin-left:150px;">
+        <div class="alert alert-danger col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2" role="alert" style="margin-top:-20px;margin-left:150px;">
             <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
             <span class="sr-only">Error:</span>
             Your username and password didn't match.
@@ -11,7 +11,7 @@
 
         {% if next %}
             {% if user.is_authenticated %}
-            <div class="alert alert-danger col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2" role="alert" style="margin-top:10px;margin-left:150px;">
+            <div class="alert alert-danger col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2" role="alert" style="margin-top:-20px;margin-left:150px;">
             <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
             <span class="sr-only">Error:</span>
             Your account doesn't have access to this page. To proceed,
@@ -22,8 +22,8 @@
             {% endif %}
         {% endif %}
 
-	    <div>
-        <div id="loginbox" style="margin-top:-30px;margin-left:150px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+	    <div class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <div id="loginbox" style="margin-top:10px;margin-left:150px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
             <div class="panel panel-info" >
                     <div class="panel-heading">
                         <div class="panel-title">Sign In</div>

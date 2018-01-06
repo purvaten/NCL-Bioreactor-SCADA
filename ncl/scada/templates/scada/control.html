@@ -4,6 +4,36 @@
 
 {% include "scada/includes/htmlsnippet.html" %}
 
-<h3>Control</h3>
+<div class="container-fluid">
+      <!-- Breadcrumbs-->
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item active">Data Table</li>
+      </ol>
+      <!-- Example DataTables Card-->
+      <div class="card mb-3">
+        <div class="card-header">
+          <i class="fa fa-send"></i> Enter data to be sent</div>
+        <div class="card-body">
+        	<form method="POST" class="post-form">
+        		{% csrf_token %}
+       			{% for field in form %}
+       				<div style="width:100%;">
+       				<div class="submit-link-row" style="float:left; width:20%;">{{ field.label_tag }}</div>
+			        {% if form.errors %}
+			            {% for error in field.errors %}
+			            <div class="alert alert-danger col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2" role="alert" style="float:left; width:80%;">
+            			<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+			            {{ error }}
+			        	</div></div>
+			            {% endfor %}
+			        {% endif %}
+					{{ field }}<br>
+		    	{% endfor %}
+       		<br>
+       		<button type="submit" class="save btn btn-default">Save</button>
+    		</form>
+        </div>
+      </div>
+    </div>
 
 {% endblock %}
