@@ -1,5 +1,7 @@
 from django import forms
 from .models import Values
+#from django.contrib.auth.forms import UserCreationForm
+#from django.contrib.auth.models import User
 
 class DataForm(forms.ModelForm):
 

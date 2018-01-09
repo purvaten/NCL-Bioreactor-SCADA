@@ -1,0 +1,39 @@
+{% extends "scada/header.html" %}
+
+{% block content %}
+
+<div class="container-fluid">
+      <!-- Breadcrumbs-->
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item active">Sign Up</li>
+      </ol>
+      <!-- Example DataTables Card-->
+      <div class="card mb-3">
+        <div class="card-header">
+          <i class="fa fa-send"></i> Enter your information</div>
+        <div class="card-body">
+          <form method="POST" class="post-form">
+            {% csrf_token %}
+            {% for field in form %}
+              <div style="width:100%;">
+              <div class="submit-link-row" style="float:left; width:20%;">{{ field.label_tag }}</div>
+              <div class="fieldWrapper">{{ field }}</div>
+
+              {% if field.help_text %}
+                <small style="color: grey">{{ field.help_text }}</small>
+              {% endif %}
+              <br>
+              {% for error in field.errors %}
+                <p style="color: red">{{ error }}</p>
+              {% endfor %}
+              <br>
+
+            {% endfor %}
+            <br>
+          <button type="submit" class="save btn btn-default">Save</button>
+        </form>
+        </div>
+      </div>
+    </div>
+
+{% endblock %}

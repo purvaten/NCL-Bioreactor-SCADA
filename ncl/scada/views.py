@@ -1,7 +1,6 @@
-from django.shortcuts import render
-from scada.models import Values
-from django.shortcuts import render_to_response, redirect
+from django.shortcuts import render, render_to_response, redirect
 from django.template import RequestContext
+from scada.models import Values
 from .forms import DataForm
 from django.utils import timezone
 
@@ -9,10 +8,13 @@ def index(request):
 	return render(request, 'scada/home.html')
 
 def contact(request):
-	return render(request, 'scada/basic.html', {'content':['If you want to contact me please email me.', 'purva.tendulkar@gmail.com']})
+	return render(request, 'scada/contact.html', {'content':['If you want to contact me please email me.', 'purva.tendulkar@gmail.com']})
 
-def login(request):
-	return render(request, 'scada/login.html')
+def projects(request):
+	return render(request, 'scada/projects.html')
+
+def people(request):
+	return render(request, 'scada/people.html')
 
 def dashboard(request):
 	#return render(request, 'scada/dashboard.html')
@@ -23,9 +25,6 @@ def dashboard(request):
 
 def stats(request):
 	return render(request, 'scada/stats.html')
-
-def history(request):
-	return render(request, 'scada/history.html')
 
 def control(request):
 	if request.method == "POST":
@@ -38,3 +37,4 @@ def control(request):
 	else:
 		form = DataForm()
 	return render(request, 'scada/control.html', {'form': form})
+

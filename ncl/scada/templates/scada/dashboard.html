@@ -5,7 +5,9 @@
 {% include "scada/includes/htmlsnippet.html" %}
 
 <!-- For periodically refreshing dashboard - Modify this according to URL -->
+{% if user.is_authenticated %}
 <meta http-equiv="refresh" content="10; URL=http://127.0.0.1:8000/dashboard/">
+{% endif %}
 
 <div id="page-top">
     <div class="container-fluid">
@@ -14,6 +16,7 @@
         <li class="breadcrumb-item active">Data Table</li>
       </ol>
       <!-- Example DataTables Card-->
+      {% if user.is_authenticated %}
       <div class="card mb-3">
         <div class="card-header">
           <i class="fa fa-table"></i> Data Table Example</div>
@@ -65,6 +68,12 @@
         <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
       </div>
     </div>
+    {% else %}
+      <div class="alert alert-danger col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2" role="alert" style="float:left; width:80%;">
+      <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+      You need to be logged in in order to see this!
+      </div>
+    {% endif %}
 
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">

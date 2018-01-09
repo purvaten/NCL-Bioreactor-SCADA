@@ -10,6 +10,14 @@
       <ol class="breadcrumb">
         <li class="breadcrumb-item active">Statistics</li>
       </ol>
+      {% if user.is_authenticated %}
+      <h3>Some Stats</h3>
+      {% else %}
+      <div class="alert alert-danger col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2" role="alert" style="float:left; width:80%;">
+      <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+      You need to be logged in in order to see this!
+      </div>
+      {% endif %}
 </div>
  </div>
 
