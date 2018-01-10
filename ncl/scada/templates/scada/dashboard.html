@@ -4,10 +4,11 @@
 
 {% include "scada/includes/htmlsnippet.html" %}
 
-<!-- For periodically refreshing dashboard - Modify this according to URL -->
+<!-- For periodically refreshing the page - Modify this according to URL -->
+<!--
 {% if user.is_authenticated %}
-<meta http-equiv="refresh" content="10; URL=http://127.0.0.1:8000/dashboard/">
-{% endif %}
+<meta http-equiv="refresh" content="20; URL=http://127.0.0.1:8000/dashboard/">
+{% endif %}-->
 
 <div id="page-top">
     <div class="container-fluid">
@@ -17,7 +18,7 @@
       </ol>
       <!-- Example DataTables Card-->
       {% if user.is_authenticated %}
-      <div class="card mb-3">
+      <div class="card mb-3" id="here">
         <div class="card-header">
           <i class="fa fa-table"></i> Data Table Example</div>
         <div class="card-body">
