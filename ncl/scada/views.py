@@ -3,6 +3,7 @@ from django.template import RequestContext
 from scada.models import Values
 from .forms import DataForm
 from django.utils import timezone
+#from django.contrib.admin.views.decorators import staff_member_required
 
 def index(request):
 	return render(request, 'scada/home.html')
@@ -16,6 +17,9 @@ def projects(request):
 def people(request):
 	return render(request, 'scada/people.html')
 
+def logged_out(request):
+	return render(request, 'registration/logged_out.html')
+
 def dashboard(request):
 	#return render(request, 'scada/dashboard.html')
 	context = RequestContext(request)
@@ -26,6 +30,7 @@ def dashboard(request):
 def stats(request):
 	return render(request, 'scada/stats.html')
 
+#@staff_member_required
 def control(request):
 	if request.method == "POST":
 		form = DataForm(request.POST)

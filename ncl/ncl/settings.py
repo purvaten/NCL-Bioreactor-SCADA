@@ -129,3 +129,6 @@ LOGIN_REDIRECT_URL = '/'
 # The password reset system requires that your website supports email.
 # This logs any emails sent to the console (so you can copy the password reset link from the console).
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# To end session after closing broswer
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
