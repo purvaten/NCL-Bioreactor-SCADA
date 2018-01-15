@@ -32,9 +32,9 @@ from django.conf import settings
 
 __all__ = ['EXPIRE_AFTER', 'WARN_AFTER', 'PASSIVE_URLS']
 
-EXPIRE_AFTER = getattr(settings, 'SESSION_SECURITY_EXPIRE_AFTER', 15)
+EXPIRE_AFTER = getattr(settings, 'SESSION_SECURITY_EXPIRE_AFTER', 600)
 
-WARN_AFTER = getattr(settings, 'SESSION_SECURITY_WARN_AFTER', 10)
+WARN_AFTER = getattr(settings, 'SESSION_SECURITY_WARN_AFTER', 540)
 
 PASSIVE_URLS = getattr(settings, 'SESSION_SECURITY_PASSIVE_URLS', [])
 

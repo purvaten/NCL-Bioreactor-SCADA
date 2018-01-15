@@ -7,8 +7,90 @@
 <!-- For periodically refreshing the page - Modify this according to URL -->
 <!--
 {% if user.is_authenticated %}
-<meta http-equiv="refresh" content="20; URL=http://127.0.0.1:8000/dashboard/">
+<meta http-equiv="refresh" content="10; URL=http://127.0.0.1:8000/dashboard/">
 {% endif %}-->
+
+<script>
+/* Gets database content from view 'send_data' */
+
+function foo(num) {
+      var len = {{ values|length }};
+      console.log("Printing how many values are present in table initially");
+      console.log(len);
+
+      /* Compare num and len and add/delete html table <tr>s appropriately
+      if (num > len) {
+        // Add num-len html table tds
+      }
+      else if (num < len) {
+        // Delete len-num html table tds
+      }*/
+
+      // OR directly change the html of "#table-content" to contain as many <tr>s as num
+      var string = "<ul>";
+      for (var i = 1; i <= num; i++) {
+          str = "<tr><td id=\"name-"+i+"\"></td><td id=\"position-"+i+"\"></td><td id=\"office-"+i+"\"></td><td id=\"age-"+i+"\"></td><td id=\"start_date-"+i+"\"></td><td id=\"salary-"+i+"\"></td></tr>"
+
+          string += str;
+      }
+      string += "</ul>";
+      $( "#table-content" ).html( string );
+
+      // Update database contents accordingly
+      for (var i = 1; i <= num; i++) {
+          $.ajax({
+                url: '/send_data/'+i,
+                indexValue: i,
+                action: 'get',
+                success: function(data) {
+                    if (data == "null") {
+                      alert('server returned nothing but success');
+                    }
+                    else {
+
+                      jdata_name = data['name'];
+                      jdata_position = data['position'];
+                      jdata_office = data['office'];
+                      jdata_age = data['age'];
+                      jdata_start_date = data['start_date'];
+                      jdata_salary = data['salary'];
+
+                      x = this.indexValue;
+
+                      $("#name-"+x).text( jdata_name );
+                      $("#position-"+x).text( jdata_position );
+                      $("#office-"+x).text( jdata_office );
+                      $("#age-"+x).text( jdata_age );
+                      $("#start_date-"+x).text( jdata_start_date );
+                      $("#salary-"+x).text( "$"+jdata_salary );
+
+                    }
+                }
+            });
+      }
+}
+
+$(document).ready(function() {
+
+    setInterval(function() {
+        $.ajax({
+            url: '/get_num/',
+            action: 'get',
+            success: function(data) {
+                if (data == "null") {
+                  alert('server returned nothing but success');
+                }
+                else {
+                  foo(data);
+                }
+            }
+        });
+    }, 10000);
+
+});
+
+
+</script>
 
 <div id="page-top">
     <div class="container-fluid">
@@ -16,6 +98,7 @@
       <ol class="breadcrumb">
         <li class="breadcrumb-item active">Data Table</li>
       </ol>
+
       <!-- Example DataTables Card-->
       {% if user.is_authenticated %}
       <div class="card mb-3" id="here">
@@ -44,17 +127,18 @@
                   <th>Salary</th>
                 </tr>
               </tfoot>
-              <tbody>
+              <tbody id="table-content">
 
                 {% if values %}
                   <ul>
                     {% for value in values %}
-                      <td>{{ value.name }}</td>
-                      <td>{{ value.position }}</td>
-                      <td>{{ value.office }}</td>
-                      <td>{{ value.age }}</td>
-                      <td>{{ value.start_date }}</td>
-                      <td>${{ value.salary }}</td>
+                      <tr>
+                      <td id="name-{{ forloop.counter }}">{{ value.name }}</td>
+                      <td id="position-{{ forloop.counter }}">{{ value.position }}</td>
+                      <td id="office-{{ forloop.counter }}">{{ value.office }}</td>
+                      <td id="age-{{ forloop.counter }}">{{ value.age }}</td>
+                      <td id="start_date-{{ forloop.counter }}">{{ value.start_date }}</td>
+                      <td id="salary-{{ forloop.counter }}">${{ value.salary }}</td>
                       </tr>
                     {% endfor %}
                   </ul>
