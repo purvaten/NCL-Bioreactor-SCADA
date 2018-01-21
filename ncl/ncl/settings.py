@@ -135,3 +135,6 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # To end session after closing broswer
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+# CSRF stuff
+CSRF_COOKIE_SECURE = True

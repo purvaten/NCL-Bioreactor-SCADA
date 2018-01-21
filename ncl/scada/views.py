@@ -5,6 +5,7 @@ from .forms import DataForm
 from django.utils import timezone
 import json
 from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_protect
 #from django.contrib.admin.views.decorators import staff_member_required
 
 def index(request):
@@ -22,6 +23,7 @@ def people(request):
 def logged_out(request):
 	return render(request, 'registration/logged_out.html')
 
+@csrf_protect
 def dashboard(request):
 	context = RequestContext(request)
 	category_list = Values.objects.order_by('-start_date')
@@ -32,6 +34,7 @@ def stats(request):
 	return render(request, 'scada/stats.html')
 
 #@staff_member_required
+@csrf_protect
 def control(request):
 	if request.method == "POST":
 		form = DataForm(request.POST)
@@ -47,6 +50,7 @@ def control(request):
 
 # Trying to pass parameter to send_data which specifies which table entry is needed
 # This will be called in a for loop in the template to display the contents
+@csrf_protect
 def send_data(request, index):
 	category_list = Values.objects.values('name', 'position', 'office', 'age', 'start_date', 'salary').order_by('-start_date')[:index]
 
@@ -62,7 +66,7 @@ def send_data(request, index):
 
 	return HttpResponse(json.dumps(result), content_type='application/json')
 
-
+@csrf_protect
 def get_num(request):
 	c = Values.objects.count()
 	return HttpResponse(json.dumps(c), content_type='application/json')

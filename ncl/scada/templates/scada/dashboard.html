@@ -15,25 +15,13 @@
 
 function foo(num) {
       var len = {{ values|length }};
-      console.log("Printing how many values are present in table initially");
-      console.log(len);
 
-      /* Compare num and len and add/delete html table <tr>s appropriately
-      if (num > len) {
-        // Add num-len html table tds
-      }
-      else if (num < len) {
-        // Delete len-num html table tds
-      }*/
-
-      // OR directly change the html of "#table-content" to contain as many <tr>s as num
-      var string = "<ul>";
+      var string = "";
       for (var i = 1; i <= num; i++) {
           str = "<tr><td id=\"name-"+i+"\"></td><td id=\"position-"+i+"\"></td><td id=\"office-"+i+"\"></td><td id=\"age-"+i+"\"></td><td id=\"start_date-"+i+"\"></td><td id=\"salary-"+i+"\"></td></tr>"
 
           string += str;
       }
-      string += "</ul>";
       $( "#table-content" ).html( string );
 
       // Update database contents accordingly
