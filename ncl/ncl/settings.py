@@ -46,7 +46,7 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -137,4 +137,4 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 # CSRF stuff
-CSRF_COOKIE_SECURE = True
+# CSRF_COOKIE_SECURE = True

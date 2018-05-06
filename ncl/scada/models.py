@@ -1,12 +1,15 @@
 from django.db import models
+import django
+
 
 class Values(models.Model):
-	name = models.CharField(max_length=100)
-	position = models.CharField(max_length=100)
-	office = models.CharField(max_length=150)
-	age = models.PositiveIntegerField()
-	start_date = models.DateTimeField()
-	salary = models.PositiveIntegerField()
+    """Class Values"""
+    name = models.CharField(max_length=100, default="anonymous")
+    start_date = models.DateTimeField(default=django.utils.timezone.now)
+    pressure = models.FloatField(default=0.0)
+    temperature = models.FloatField(default=0.0)
+    ph = models.FloatField(default=0.0)
+    levels = models.FloatField(default=0.0)
 
-	def __str__(self):
-		return self.name
+    def __str__(self):
+        return self.name

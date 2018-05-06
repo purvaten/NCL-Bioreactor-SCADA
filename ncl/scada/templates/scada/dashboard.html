@@ -5,10 +5,9 @@
 {% include "scada/includes/htmlsnippet.html" %}
 
 <!-- For periodically refreshing the page - Modify this according to URL -->
-<!--
 {% if user.is_authenticated %}
-<meta http-equiv="refresh" content="10; URL=http://127.0.0.1:8000/dashboard/">
-{% endif %}-->
+<meta http-equiv="refresh" content="5; URL=http://127.0.0.1:8000/dashboard/">
+{% endif %}
 
 <script>
 /* Gets database content from view 'send_data' */
@@ -18,7 +17,7 @@ function foo(num) {
 
       var string = "";
       for (var i = 1; i <= num; i++) {
-          str = "<tr><td id=\"name-"+i+"\"></td><td id=\"position-"+i+"\"></td><td id=\"office-"+i+"\"></td><td id=\"age-"+i+"\"></td><td id=\"start_date-"+i+"\"></td><td id=\"salary-"+i+"\"></td></tr>"
+          str = "<tr><td id=\"pressure-"+i+"\"></td><td id=\"temperature-"+i+"\"></td><td id=\"ph-"+i+"\"></td><td id=\"levels-"+i+"\"></td></tr>"
 
           string += str;
       }
@@ -36,21 +35,17 @@ function foo(num) {
                     }
                     else {
 
-                      jdata_name = data['name'];
-                      jdata_position = data['position'];
-                      jdata_office = data['office'];
-                      jdata_age = data['age'];
-                      jdata_start_date = data['start_date'];
-                      jdata_salary = data['salary'];
+                      jdata_pressure = data['pressure'];
+                      jdata_temperature = data['temperature'];
+                      jdata_ph = data['ph'];
+                      jdata_levels = data['levels'];
 
                       x = this.indexValue;
 
-                      $("#name-"+x).text( jdata_name );
-                      $("#position-"+x).text( jdata_position );
-                      $("#office-"+x).text( jdata_office );
-                      $("#age-"+x).text( jdata_age );
-                      $("#start_date-"+x).text( jdata_start_date );
-                      $("#salary-"+x).text( "$"+jdata_salary );
+                      $("#pressure-"+x).text( jdata_pressure );
+                      $("#temperature-"+x).text( jdata_temperature );
+                      $("#ph-"+x).text( jdata_ph );
+                      $("#levels-"+x).text( jdata_levels );
 
                     }
                 }
@@ -97,36 +92,33 @@ $(document).ready(function() {
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <thead>
                 <tr>
-                  <th>Name</th>
-                  <th>Position</th>
-                  <th>Office</th>
-                  <th>Age</th>
-                  <th>Start date</th>
-                  <th>Salary</th>
+                  <th>Pressure</th>
+                  <th>Temperature</th>
+                  <th>Ph</th>
+                  <th>Levels</th>
+                  <th>Date</th>
                 </tr>
               </thead>
-              <tfoot>
+              <!--<tfoot>
                 <tr>
-                  <th>Name</th>
-                  <th>Position</th>
-                  <th>Office</th>
-                  <th>Age</th>
-                  <th>Start date</th>
-                  <th>Salary</th>
+                  <th>Pressure</th>
+                  <th>Temperature</th>
+                  <th>Ph</th>
+                  <th>Levels</th>
+                  <th>Date</th>
                 </tr>
-              </tfoot>
+              </tfoot>-->
               <tbody id="table-content">
 
                 {% if values %}
                   <ul>
                     {% for value in values %}
                       <tr>
-                      <td id="name-{{ forloop.counter }}">{{ value.name }}</td>
-                      <td id="position-{{ forloop.counter }}">{{ value.position }}</td>
-                      <td id="office-{{ forloop.counter }}">{{ value.office }}</td>
-                      <td id="age-{{ forloop.counter }}">{{ value.age }}</td>
+                      <td id="pressure-{{ forloop.counter }}">{{ value.pressure }}</td>
+                      <td id="temperature-{{ forloop.counter }}">{{ value.temperature }}</td>
+                      <td id="ph-{{ forloop.counter }}">{{ value.ph }}</td>
+                      <td id="levels-{{ forloop.counter }}">{{ value.levels }}</td>
                       <td id="start_date-{{ forloop.counter }}">{{ value.start_date }}</td>
-                      <td id="salary-{{ forloop.counter }}">${{ value.salary }}</td>
                       </tr>
                     {% endfor %}
                   </ul>
